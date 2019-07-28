@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome3</title>
+</head>
+<body>
+<p th:if="${#request.userPrincipal != null}">
+    is Log-in
+</p>
+<p th:if="${#request.userPrincipal == null}">
+    is Log-out
+</p>
+
+[[${#request.userPrincipal.name}]] <br />
+
+<a href="/logout">Log out</a> <br />
+</body>
+</html>

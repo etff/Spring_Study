@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+    <form action="j_spring_security_check" method="POST">
+        <p th:if="${param.error != null}">
+            Login error! <br />
+            [[${error_message}]]
+        </p>
+
+        ID : <input type="text" name="j_username"> <br />
+        PW : <input type="text" name="j_password"> <br />
+        <input type="submit" value="LOGIN"> <br />
+    </form>
+</body>
+</html>
