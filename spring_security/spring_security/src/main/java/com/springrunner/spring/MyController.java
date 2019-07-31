@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MyController {
 
     @RequestMapping("/")
-    public @ResponseBody String root() throws Exception {
+    public @ResponseBody
+    String root() throws Exception {
         return "Security (1)";
     }
 

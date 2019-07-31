@@ -5,15 +5,15 @@
     <title>login</title>
 </head>
 <body>
-    <form action="j_spring_security_check" method="POST">
-        <p th:if="${param.error != null}">
-            Login error! <br />
-            [[${error_message}]]
-        </p>
+<form action="j_spring_security_check" method="POST">
+    <p th:if="${param.error != null}">
+        Login error! <br/>
+        [[${error_message}]]
+    </p>
 
-        ID : <input type="text" name="j_username"> <br />
-        PW : <input type="text" name="j_password"> <br />
-        <input type="submit" value="LOGIN"> <br />
-    </form>
+    ID : <input type="text" name="j_username"> <br/>
+    PW : <input type="text" name="j_password"> <br/>
+    <input type="submit" value="LOGIN"> <br/>
+</form>
 </body>
 </html>
