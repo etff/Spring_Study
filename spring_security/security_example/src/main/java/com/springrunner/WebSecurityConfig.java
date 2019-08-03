@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
@@ -17,7 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/home").permitAll()
+                    .antMatchers("/", "/home", "/create").permitAll()
+                    .antMatchers("/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -25,19 +28,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                 .logout()
+                    .logoutSuccessUrl("/home")
                     .permitAll();
     }
 
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    /*@Bean
     @Override
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
-                        .roles("USER")
+                        .roles("ROLE_USER")
                         .build();
 
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
 }

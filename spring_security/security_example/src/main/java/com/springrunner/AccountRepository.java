@@ -1,7 +1,6 @@
 package com.springrunner;
 
 import org.springframework.stereotype.Repository;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -16,5 +15,9 @@ public class AccountRepository {
         account.setId(random.nextInt());
         accounts.put(account.getEmail(), account);
         return account;
+    }
+
+    public Account findByEmail(String username) {
+        return accounts.get(username);
     }
 }
