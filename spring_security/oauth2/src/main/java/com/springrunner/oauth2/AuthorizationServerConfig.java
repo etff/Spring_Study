@@ -23,15 +23,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private AuthenticationManager authenticationManager;
 
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
         configurer
                 .inMemory()
                 .withClient("app-client")
-                .secret("app-password")
+                .secret(passwordEncoder.encode("app-password"))
                 .authorizedGrantTypes("password",
                         "authorization_code",
                         "refresh_token",
@@ -44,8 +45,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .authenticationManager(authenticationManager);
     }
 
 

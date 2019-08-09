@@ -9,7 +9,7 @@ public class User {
     @Id @GeneratedValue
     private Long id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -22,11 +22,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getPassword() {
@@ -41,7 +41,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
